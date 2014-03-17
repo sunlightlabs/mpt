@@ -184,7 +184,7 @@ footer h3 {
 	font-weight: 400;
 }
 .home .hero {
-	background: url(../img/envelope_money.jpg) center -300px no-repeat;
+	background: url(../img/envelope_money_2844.jpg) center top no-repeat;
 	padding-top: 130px;
 	padding-bottom: 80px;
 	margin-top: -45px;
@@ -227,7 +227,7 @@ footer h3 {
 	margin-top: -30px;
 }
 .mpt-social-banner .follow li {
-	padding: 0;	
+	padding: 0;
 }
 .mpt-social-banner .follow li a{
 	width: 100%;
@@ -237,13 +237,13 @@ footer h3 {
 	background-color: #00aced;
 }
 .button.twitter:hover, .button.twitter:focus {
-	background-color: #008cba;	
+	background-color: #008cba;
 }
 .button.facebook {
 	background-color: #3b5998;
 }
 .button.facebook:hover, .button.facebook:focus {
-	background-color: #2f497e;	
+	background-color: #2f497e;
 }
 
 .mpt-tweets {
@@ -296,7 +296,7 @@ article header {
 	background: #abc737; /* medium green */
 	border-left: 0.9375rem solid #8fba3e; /* dark green */
 	padding-bottom: 20px;
-	padding-top: 20px; 
+	padding-top: 20px;
 	padding-left: 8.33333% !important;
 	margin-right: 8.33333% !important;
 	margin-bottom: 20px;
@@ -357,8 +357,8 @@ article p {
 @media only screen { } /* Define mobile styles */
 
 @media only screen and (max-width: 40em) {
-		
-		/* Removes gradient faux columns and replaces with standard background colors when layout shifts*/ 
+
+		/* Removes gradient faux columns and replaces with standard background colors when layout shifts*/
 		.mission, .mpt-tweets, .community-tweets  {
 			background: none;
 		}
@@ -398,22 +398,28 @@ article p {
 		.page-header {
 			margin-top: -85px;
 		}
+		.home .hero {
+			background: url(../img/envelope_money_640.jpg) center bottom no-repeat;
+		}
 
 
 
 	} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 
 // Medium screens
-@media only screen and (min-width: 40.063em) { 
+@media only screen and (min-width: 40.063em) {
 		.top-bar-section li:not(.has-form) a:not(.button) {
 			padding: 0 31px;
 		}
 
 	} /* min-width 641px, medium screens */
 
-@media only screen and (min-width: 40.063em) and (max-width: 64em) { 
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
 		.home .hero {
 			background-position: center -200px;
+		}
+		.home .hero {
+			background: url(../img/envelope_money_1024.jpg) center bottom no-repeat;
 		}
 
 	} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
