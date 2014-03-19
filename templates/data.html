@@ -5,12 +5,13 @@
 {% block content %}
 	<div class="row">
 		<div class="small-10 small-centered columns">
-			<p>
-				In 2014, the Money, Politics and Transparency Project will be designing and fielding a custom set of “Integrity Indicators” questions to assess the current state of political finance transparency and regulation in 50 countries. The goal of these indicators, based on Global Integrity’s award-winning expert assessment methodology for assessing the existence and effectiveness of integrity systems at the national and local levels, is to provide fresh data for understanding good and poor practices globally around political finance transparency and regulation.
-				</p>
-				<p>
-				Watch this space for the eventual indicators (which we’ll warmly invite public comment on) as well as final data and results.
-			</p>
+			<div class="editable" data-key="intro">
+				{{ content.intro|safe }}
+				{#
+				<p>In 2014, the Money, Politics and Transparency Project will be designing and fielding a custom set of “Integrity Indicators” questions to assess the current state of political finance transparency and regulation in 50 countries. The goal of these indicators, based on Global Integrity’s award-winning expert assessment methodology for assessing the existence and effectiveness of integrity systems at the national and local levels, is to provide fresh data for understanding good and poor practices globally around political finance transparency and regulation.</p>
+				<p>Watch this space for the eventual indicators (which we’ll warmly invite public comment on) as well as final data and results.</p>
+				#}
+			</div>
 		</div>
 	</div>
 {% endblock %}

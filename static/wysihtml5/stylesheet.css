@@ -1,5 +1,10 @@
-.editable { min-height: 50px; }
+.editable {
+  border: 1px solid transparent;
+  padding: 5px;
+  min-height: 50px;
+}
 .editable:hover {
+  border: 1px solid #FFF;
   box-shadow: 0 0 10px #CCC;
   -webkit-background-clip: padding-box;
   -webkit-border-radius: 5px;

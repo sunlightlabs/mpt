@@ -1,0 +1,23 @@
+p {
+    color: #2C4F52;
+    font-family: "kepler-std-extended", georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: inherit;
+    line-height: 1.6em;
+    margin: 0 0 20px 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+ul {
+    font-family: 'helvetica neue', arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    list-style-position: outside;
+    margin: 20px 70px 0;
+}
+li {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
