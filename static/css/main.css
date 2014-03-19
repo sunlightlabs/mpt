@@ -425,24 +425,59 @@ ul.mpt-related-orgs {
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
+.event dl {
+	font-size: .93rem;
+}
+.event-details {
+	margin-bottom: 0;
+}
 .event dl dt {
 	display: none;
 }
 .event.next {
 	background-color: rgba(171, 199, 55, 1);
 	color: #ecf5c6; /* light green */
+	padding-top: 35px;
+	padding-bottom: 35px;
 }
 .event.next  a {
 	color: #ffffff;
 }
-.event.next-other {
+.event.next  a:hover {
+	color: #568c49;
+}
+
+.next-other .event {
 	background-color: #c5e4ea;
 	margin-top: 20px;
 }
+.event .date {
+	margin-bottom: 5px;
+}
 .event .title {
 	font-family: 'helvetica neue', arial, sans-serif;
-
+	margin-bottom: 5px;
+	font-size: 1.4rem;
+	line-height: 1.4rem;
 }
+.event .host {
+	margin-bottom: 0;
+	line-height: 1.2rem;
+}
+.event .eventlink {
+	margin-bottom: 0;
+}
+.event.next dl {
+	font-size: 1.2rem;
+}
+.event.next .title{
+	font-size: 1.6rem;
+	line-height: 1.6rem;
+}
+ul.more-events {
+	margin: 0;
+}
+
 
 
 /* MEDIA QUERIES - for style changes*/
@@ -520,17 +555,39 @@ ul.mpt-related-orgs {
 	} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
 
 // Large screens
-@media only screen and (min-width: 64.063em) { } /* min-width 1025px, large screens */
+@media only screen and (min-width: 64.063em) { 
+		
+	} /* min-width 1025px, large screens */
 
-@media only screen and (min-width: 64.063em) and (max-width: 90em) { } /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { 
+		.next-other {
+			padding-left: 0;
+		}
+	} /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
 
 // XLarge screens
-@media only screen and (min-width: 90.063em) { } /* min-width 1441px, xlarge screens */
+@media only screen and (min-width: 90.063em) {
+		.next-other {
+			padding-left: 0;
+		}
+ } /* min-width 1441px, xlarge screens */
 
-@media only screen and (min-width: 90.063em) and (max-width: 120em) { } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
+@media only screen and (min-width: 90.063em) and (max-width: 120em) { 
+		.next-other {
+			padding-left: 0;
+		}
+	} /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
 
 // XXLarge screens
-@media only screen and (min-width: 120.063em) { } /* min-width 1921px, xlarge screens */
+@media only screen and (min-width: 120.063em) { 
+		.next-other {
+			padding-left: 0;
+		}
+	} /* min-width 1921px, xlarge screens */
 
-
+@media only screen and (min-width: 120.063em) and (max-width: 200em) { 
+		.next-other {
+			padding-left: 0;
+		}
+	} /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
 
