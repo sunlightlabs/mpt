@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}Money, Politics and Transparency{% endblock %}</title>
+
+		<link rel="apple-touch-icon" sizes="57x57" href="/static/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/static/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/static/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/static/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/static/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/static/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/static/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/static/icons/apple-touch-icon-152x152.png">
+		<link rel="icon" type="image/png" href="/static/icons/favicon-196x196.png" sizes="196x196">
+		<link rel="icon" type="image/png" href="/static/icons/favicon-160x160.png" sizes="160x160">
+		<link rel="icon" type="image/png" href="/static/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/static/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/static/icons/favicon-32x32.png" sizes="32x32">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-TileImage" content="/static/icons/mstile-144x144.png">
+
+		<link rel="stylesheet" href="/static/css/foundation.css" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<script src="js/vendor/modernizr.js"></script>
+		<script type="text/javascript" src="//use.typekit.net/djk1gww.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	</head>
+	<body class="{% block body_class %}{% endblock %}">
+		<header>
+			<div class="main-nav contain-to-grid show-for-small">
+				<nav class="top-bar" data-topbar="">
+					<ul class="title-area meta-nav">
+						<li><a href="/about.html">about</a></li>
+						<li><a href="/contact.html">contact</a></li>
+						<li class="toggle-topbar menu-icon"><a href="">Menu</a></li>
+					</ul>
+					<section class="top-bar-section" style="left: 0%;">
+							<!-- Right Nav Section -->
+							<ul class="right hide-for-large-up">
+								<li><a href="/">Home</a></li>
+								<li><a href="/casestudies">Case Studies</a></li>
+								<li><a href="/data">Data</a></li>
+								<li><a href="/resources">Resources</a></li>
+								<li><a href="/norms">Norms</a></li>
+								<li class="active"><a href="/networking">Networking</a></li>
+							</ul>
+						</section>
+					</nav>
+			</div>
+			<div class="row">
+				<ul class="right meta-nav hide-for-small">
+					<li><a href="/about">about</a></li>
+					<li><a href="/contact">contact</a></li>
+				</ul>
+				<a href="/"><h1 class="logo">Money, Politics and Transparency</h1></a>
+			</div>
+
+			<div class="main-nav contain-to-grid hide-for-small">
+				<nav class="top-bar">
+						<div class="top-bar-section large-12 columns">
+							<ul>
+								<li><a href="/casestudies">Case Studies</a></li>
+								<li><a href="/data">Data</a></li>
+								<li><a href="/resources">Resources</a></li>
+								<li><a href="/norms">Norms</a></li>
+								<li class="active"><a href="/networking">Networking</a></li>
+							</ul>
+						</div>
+				</nav>
+			</div>
+		</header>
+		<div class="mpt-content-area">
+			{% block content_area %}
+				<div class="page-header">
+					<div class="row">
+						<div class="social-share">
+							<ul class="share">
+								<li class=""><a href="" class="small button twitter">Share</a></li>
+								<li class=""><a href="" class="small button facebook">Like</a></li>
+							</ul>
+						</div>
+						<h2 class="small-8 small-centered columns">{% block content_title %}{% endblock %}</h2>
+					</div>
+				</div>
+				{% block content %}{% endblock %}
+			{% endblock %}
+		</div>
+		<footer>
+			<div class="row">
+				<h3>a project of</h3>
+				<ul class="partner-logos small-12 small-centered columns">
+					<li>
+						<a href="http://www.globalintegrity.org/"><img src="/static/img/global-integrity-logo.png"></a>
+					</li>
+					<li>
+						<a href="http://www.electoralintegrityproject.com/"><img src="/static/img/electoral-integrity-logo.png"></a>
+					</li>
+					<li>
+						<a href="http://sunlightfoundation.com/"><img src="/static/img/sunlight-foundation-logo.png"></a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+		<script src="/static/js/vendor/jquery.js"></script>
+		<script src="/static/js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

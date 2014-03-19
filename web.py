@@ -19,36 +19,36 @@ app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'
 # request lifecycle
 #
 
-@app.before_request
-def before_request():
-    mongo_uri = os.environ.get('MONGOHQ_URL')
-    database = urlparse.urlparse(mongo_uri).path
+# @app.before_request
+# def before_request():
+#     mongo_uri = os.environ.get('MONGOHQ_URL')
+#     database = urlparse.urlparse(mongo_uri).path
 
-    print "!!!!!", database
+#     print "!!!!!", database
 
-    if mongo_uri:
-        conn = pymongo.Connection(mongo_uri)
-        g.db = conn[os.environ.get('MONGOHQ_DB')]
-    else:
-        conn = pymongo.Connection()
-        g.db = conn['openingparliament']
-
-
-@app.teardown_request
-def teardown_request(exception):
-    if hasattr(g, 'db'):
-        g.db.connection.disconnect()
+#     if mongo_uri:
+#         conn = pymongo.Connection(mongo_uri)
+#         g.db = conn[os.environ.get('MONGOHQ_DB')]
+#     else:
+#         conn = pymongo.Connection()
+#         g.db = conn['openingparliament']
 
 
-@app.context_processor
-def inject_content():
-    doc = g.db.blocks.find_one({'path': request.path})
-    return {'content': doc.get('content') or EMPTY_BLOCK if doc else EMPTY_BLOCK}
+# @app.teardown_request
+# def teardown_request(exception):
+#     if hasattr(g, 'db'):
+#         g.db.connection.disconnect()
 
 
-@app.context_processor
-def inject_admin():
-    return {'admin': True if request.authorization else False}
+# @app.context_processor
+# def inject_content():
+#     doc = g.db.blocks.find_one({'path': request.path})
+#     return {'content': doc.get('content') or EMPTY_BLOCK if doc else EMPTY_BLOCK}
+
+
+# @app.context_processor
+# def inject_admin():
+#     return {'admin': True if request.authorization else False}
 
 
 #
