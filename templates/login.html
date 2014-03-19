@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content_title %}Login{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="small-10 small-centered columns">
+			<form action="/login" method="post">
+				<div class="row">
+					<div class="large-3 columns">
+						<label for="mpt-email" class="right inline">Username</label>
+					</div>
+					<div class="large-9 columns">
+						<input type="text" id="mpt-username" name="username" placeholder="Your username">
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-3 columns">
+						<label for="mpt-comment" class="right inline">Password</label>
+					</div>
+					<div class="large-9 columns">
+						<input type="password" id="mpt-password" name="password" placeholder="MdMOP4z1g7g3u81Ka">
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-9 small-offset-3 end columns">
+						<button>Submit</button>
+					</div>
+				</div>
+				</form>
+		</div>
+	</div>
+{% endblock %}

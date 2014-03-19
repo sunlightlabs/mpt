@@ -4,5 +4,7 @@ Jinja2==2.7.2
 MarkupSafe==0.19
 Werkzeug==0.9.4
 itsdangerous==0.23
+mistune==0.2.0
 pymongo==2.6.3
+pytz==2014.1
 whitenoise==0.13

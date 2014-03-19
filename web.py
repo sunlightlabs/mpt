@@ -1,9 +1,10 @@
 import os
 import urlparse
 
+import mistune
 import pymongo
 from flask import Flask, redirect, render_template, request
-from flask.ext.login import LoginManager, login_user, logout_user, login_required
+from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from whitenoise import WhiteNoise
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -12,7 +13,8 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRETKEY', '1234567890')
 
-app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'))
+app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'), prefix='static/')
+app.wsgi_app.add_files(os.path.join(PROJECT_ROOT, 'www'))
 
 
 #
@@ -46,9 +48,9 @@ app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'
 #     return {'content': doc.get('content') or EMPTY_BLOCK if doc else EMPTY_BLOCK}
 
 
-# @app.context_processor
-# def inject_admin():
-#     return {'admin': True if request.authorization else False}
+@app.context_processor
+def inject_user():
+    return {'user': current_user}
 
 
 #
@@ -56,6 +58,9 @@ app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'
 #
 
 class User(object):
+
+    def __init__(self, user_id):
+        self.id = user_id
 
     def is_authenticated(self):
         return True
@@ -67,54 +72,33 @@ class User(object):
         return False
 
     def get_id(self):
-        pass
+        return self.id
+
+    @property
+    def is_admin(self):
+        return self.is_authenticated() and self.is_active() and not self.is_anonymous()
 
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-def login_user(user):
-    pass
-
 @login_manager.user_loader
-def load_user(userid):
-    return User.get(userid)
+def load_user(user_id):
+    return User(user_id)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        # login and validate the user...
+        user = load_user(request.form.get('username'))
         login_user(user, remember=True)
-        return redirect(request.args.get("next") or url_for("index"))
-    return render_template("login.html", form=form)
+        return redirect(request.args.get("next") or '/')
+    return render_template("login.html")
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(somewhere)
-
-#
-# authentication stuff
-#
-
-def check_auth(username, password):
-    return username == 'admin' and password == os.environ.get('ADMIN_PASSWORD', '')
-
-
-def authenticate():
-    msg = "This site is not yet available to the public. Please login."
-    return Response(msg, 401, {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        return f(*args, **kwargs)
-    return decorated
+    return redirect('/')
 
 
 #
@@ -136,20 +120,22 @@ def slugify(value):
 def save():
 
     content = request.form.get('content', '').strip()
-    key = request.form.get('key')
-    path = request.form.get('path')
+    # key = request.form.get('key')
+    # path = request.form.get('path')
 
-    if not path:
-        referrer = request.environ.get('HTTP_REFERER')
-        path = urlparse.urlparse(referrer).path
+    # if not path:
+    #     referrer = request.environ.get('HTTP_REFERER')
+    #     path = urlparse.urlparse(referrer).path
 
-    doc = {
-        'path': path,
-        'key': key,
-        'content': content,
-    }
+    content = mistune.markdown(content)
 
-    g.db.blocks.update({'path': path}, {"$set": doc}, upsert=True)
+    # doc = {
+    #     'path': path,
+    #     'key': key,
+    #     'content': content,
+    # }
+
+    # g.db.blocks.update({'path': path}, {"$set": doc}, upsert=True)
 
     return content
 
