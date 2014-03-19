@@ -9,6 +9,8 @@ from whitenoise import WhiteNoise
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
+EMPTY_BLOCK = """<br><br>"""
+
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRETKEY', '1234567890')
@@ -18,34 +20,34 @@ app.wsgi_app.add_files(os.path.join(PROJECT_ROOT, 'www'))
 
 
 #
+# MongoDB setup
+#
+
+MONGO_URL = os.environ.get('MONGOHQ_URL')
+
+url = urlparse.urlparse(MONGO_URL)
+
+MONGO_DB = url.path[1:]
+MONGO_USER = url.username
+MONGO_PASS = url.password
+
+mongo_conn = pymongo.Connection(MONGO_URL)
+db = mongo_conn[MONGO_DB]
+
+if MONGO_USER and MONGO_PASS:
+    db.authenticate(MONGO_USER, MONGO_PASS)
+
+
+#
 # request lifecycle
 #
 
-# @app.before_request
-# def before_request():
-#     mongo_uri = os.environ.get('MONGOHQ_URL')
-#     database = urlparse.urlparse(mongo_uri).path
-
-#     print "!!!!!", database
-
-#     if mongo_uri:
-#         conn = pymongo.Connection(mongo_uri)
-#         g.db = conn[os.environ.get('MONGOHQ_DB')]
-#     else:
-#         conn = pymongo.Connection()
-#         g.db = conn['openingparliament']
-
-
-# @app.teardown_request
-# def teardown_request(exception):
-#     if hasattr(g, 'db'):
-#         g.db.connection.disconnect()
-
-
-# @app.context_processor
-# def inject_content():
-#     doc = g.db.blocks.find_one({'path': request.path})
-#     return {'content': doc.get('content') or EMPTY_BLOCK if doc else EMPTY_BLOCK}
+@app.context_processor
+def inject_content():
+    docs = db.blocks.find({'path': request.path})
+    blocks = {d.get('key'): d.get('content') or EMPTY_BLOCK for d in docs}
+    print "--- blocks: ", blocks
+    return {'content': blocks}
 
 
 @app.context_processor
@@ -120,22 +122,24 @@ def slugify(value):
 def save():
 
     content = request.form.get('content', '').strip()
-    # key = request.form.get('key')
-    # path = request.form.get('path')
+    key = request.form.get('key')
+    path = request.form.get('path')
+    username = request.form.get('user')
 
-    # if not path:
-    #     referrer = request.environ.get('HTTP_REFERER')
-    #     path = urlparse.urlparse(referrer).path
+    if not path:
+        referrer = request.environ.get('HTTP_REFERER')
+        path = urlparse.urlparse(referrer).path
 
     content = mistune.markdown(content)
 
-    # doc = {
-    #     'path': path,
-    #     'key': key,
-    #     'content': content,
-    # }
+    doc = {
+        'path': path,
+        'key': key,
+        'content': content,
+        'user': username,
+    }
 
-    # g.db.blocks.update({'path': path}, {"$set": doc}, upsert=True)
+    db.blocks.update({'path': path}, {"$set": doc}, upsert=True)
 
     return content
 

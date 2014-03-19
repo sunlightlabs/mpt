@@ -1,4 +1,4 @@
-
+.editable { min-height: 50px; }
 .editable:hover {
   box-shadow: 0 0 10px #CCC;
   -webkit-background-clip: padding-box;

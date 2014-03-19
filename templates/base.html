@@ -155,7 +155,8 @@
 					$('.editable').dblclick(function(ev) {
 
 						var $this = $(this);
-						var height = $this.height();
+						var height = Math.max($this.height(), 300);
+						var key = $this.attr('data-key');
 
 						var $editor = $('<form><textarea id="wysihtml5-textarea" autofocus></textarea></form>');
 						$editor.find('textarea').css('height', height + 'px').html($this.html());
@@ -177,9 +178,10 @@
 						editor.save = function() {
 							var params = {
 								path: window.location.pathname,
-								content: editor.getValue()
+								key: key,
+								content: editor.getValue(),
+								user: '{{ user.id }}'
 							}
-							console.log(params);
 							$.post('/save', params, function(data) {
 								$this.html(data).show();
 								$toolbar.hide();
@@ -188,7 +190,6 @@
 						};
 
 						editor.cancel = function() {
-							console.log('canceling');
 							$this.show();
 							$toolbar.hide();
 							$editor.remove();
