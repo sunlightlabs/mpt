@@ -2,10 +2,12 @@ import os
 import urlparse
 
 import mistune
-import pymongo
 from flask import Flask, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from whitenoise import WhiteNoise
+
+import mongo
+import users
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,24 +20,11 @@ app.secret_key = os.environ.get('FLASK_SECRETKEY', '1234567890')
 app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(PROJECT_ROOT, 'static'), prefix='static/')
 app.wsgi_app.add_files(os.path.join(PROJECT_ROOT, 'www'))
 
-
 #
-# MongoDB setup
+# database
 #
 
-MONGO_URL = os.environ.get('MONGOHQ_URL')
-
-url = urlparse.urlparse(MONGO_URL)
-
-MONGO_DB = url.path[1:]
-MONGO_USER = url.username
-MONGO_PASS = url.password
-
-mongo_conn = pymongo.Connection(MONGO_URL)
-db = mongo_conn[MONGO_DB]
-
-if MONGO_USER and MONGO_PASS:
-    db.authenticate(MONGO_USER, MONGO_PASS)
+db = mongo.connect()
 
 
 #
@@ -46,7 +35,6 @@ if MONGO_USER and MONGO_PASS:
 def inject_content():
     docs = db.blocks.find({'path': request.path})
     blocks = {d.get('key'): d.get('content') or EMPTY_BLOCK for d in docs}
-    print "--- blocks: ", blocks
     return {'content': blocks}
 
 
@@ -59,41 +47,26 @@ def inject_user():
 # login stuff
 #
 
-class User(object):
-
-    def __init__(self, user_id):
-        self.id = user_id
-
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return self.id
-
-    @property
-    def is_admin(self):
-        return self.is_authenticated() and self.is_active() and not self.is_anonymous()
-
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User(user_id)
+def load_user(username):
+    user = users.get_user(username)
+    return user
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        user = load_user(request.form.get('username'))
-        login_user(user, remember=True)
-        return redirect(request.args.get("next") or '/')
+        print "LOGIN"
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = users.get_user(username, password)
+        if user:
+            login_user(user, remember=True)
+            return redirect(request.args.get("next") or '/')
+        return redirect('/login')
     return render_template("login.html")
 
 @app.route("/logout")
