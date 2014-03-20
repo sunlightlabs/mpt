@@ -1,4 +1,5 @@
 import os
+import re
 import urlparse
 
 import mistune
@@ -6,6 +7,7 @@ from flask import Flask, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from whitenoise import WhiteNoise
 
+import feeds
 import mongo
 import users
 
@@ -82,11 +84,27 @@ def logout():
 # template filters
 #
 
+FIGURE_RE = re.compile(r'<figure(.*?)</figure>', re.S)
+HN_RE = re.compile(r'<h[1-6](.*?)</h[1-6]>', re.S)
+OL_RE = re.compile(r'<ol(.*?)</ol>', re.S)
+UL_RE = re.compile(r'<ul(.*?)</ul>', re.S)
+
+@app.template_filter()
+def pretreat(value):
+    value = FIGURE_RE.sub('', value)
+    value = HN_RE.sub('', value)
+    value = OL_RE.sub('', value)
+    value = UL_RE.sub('', value)
+    return value
+
+@app.template_filter()
+def markdown(value):
+    return mistune.markdown(value)
+
 @app.template_filter()
 def slugify(value):
     value = re.sub('[^\w\s-]', '', value).strip().lower()
     return re.sub('[-\s]+', '-', value)
-
 
 #
 # cms methods
@@ -124,7 +142,10 @@ def save():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    context = {
+        'posts': feeds.posts(),
+    }
+    return render_template('index.html', **context)
 
 
 @app.route('/about')
