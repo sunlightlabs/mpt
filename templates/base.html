@@ -21,6 +21,17 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="/static/icons/mstile-144x144.png">
 
+		<!-- open graph tags -->
+		<meta property="og:site_name" content="Money, Politics and Transparency">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:image" content="/static/icons/facebook.jpg">
+		<meta property="og:type" content="website">
+		{% block og %}
+		<meta property="og:title" content="Money, Politics and Transparency">
+		<meta property="og:description" content="Money, Politics and Transparency is dedicated to improving political finance transparency around the globe.">
+		<meta property="og:url" content="http://sunlightfoundation.com/">
+		{% endblock %}
+
 		<link rel="stylesheet" href="/static/css/foundation.css" />
 		<link rel="stylesheet" href="/static/css/main.css" />
 		<script src="js/vendor/modernizr.js"></script>

@@ -56,14 +56,14 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(username):
     user = users.get_user(username)
-    user.active = True
-    user.authenticated = True
+    if user:
+        user.active = True
+        user.authenticated = True
     return user
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        print "LOGIN"
         username = request.form.get('username')
         password = request.form.get('password')
         user = users.get_user(username, password)
