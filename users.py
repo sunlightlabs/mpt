@@ -8,10 +8,11 @@ import mongo
 
 class User(object):
 
-    def __init__(self, user_id, is_authenticated=False, is_active=False):
+    def __init__(self, user_id):
         self.id = user_id
-        self.authenticated = is_authenticated
-        self.active = is_active
+        self.authenticated = False
+        self.active = False
+        self.anonymous = True
 
     def __str__(self):
         return self.id
@@ -20,13 +21,13 @@ class User(object):
         return '<User: %s>' % self.id
 
     def is_authenticated(self):
-        return True
+        return self.authenticated
 
     def is_active(self):
-        return True
+        return self.active
 
     def is_anonymous(self):
-        return False
+        return self.id is None
 
     def get_id(self):
         return self.id
@@ -54,9 +55,10 @@ def get_user(username, password=None):
     db = mongo.connect()
     doc = db.users.find_one({'username': username})
     if doc:
-        user = User(doc['username'], is_active=doc.get('active', False))
+        user = User(doc['username'])
+        user.active = doc.get('active', False)
         if password and valid_password(username, password):
-            user.is_authenticated = True
+            user.authenticated = True
         return user
 
 def get_users():

@@ -54,6 +54,8 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(username):
     user = users.get_user(username)
+    user.active = True
+    user.authenticated = True
     return user
 
 @app.route("/login", methods=["GET", "POST"])
@@ -63,7 +65,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         user = users.get_user(username, password)
-        if user:
+        if user and user.is_authenticated():
             login_user(user, remember=True)
             return redirect(request.args.get("next") or '/')
         return redirect('/login')
