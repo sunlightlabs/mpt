@@ -393,8 +393,9 @@ article p {
 }
 .mpt-content-area ul {
 	color: #2c4f52;
-	font-family: 'helvetica neue', arial, sans-serif;
 	margin: 20px 70px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 .mpt-content-area ul li {
 	margin-bottom: 10px;
