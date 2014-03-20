@@ -3,31 +3,31 @@
 {% block content_title %}Contact{% endblock %}
 
 {% block content %}
-	<div class="row">
+	<div class="row page-content clearfix">
 		<div class="small-10 small-centered columns">
-				<form action="/contact" method="post">
-					<div class="row">
-						<div class="large-3 columns">
-							<label for="mpt-email" class="right inline">Your email address</label>
-						</div>
-						<div class="large-9 columns">
-							<input type="text" id="mpt-email" name="email" placeholder="Your email address" />
-						</div>
+			<form action="/contact" method="post">
+				<div class="row">
+					<div class="large-3 columns">
+						<label for="mpt-email" class="right inline">Your email address</label>
 					</div>
-					<div class="row">
-						<div class="large-3 columns">
-							<label for="mpt-comment" class="right inline">What are you thinking?</label>
-						</div>
-						<div class="large-9 columns">
-							<textarea id="mpt-comment" name="message" placeholder="What are you thinking?"></textarea>
-						</div>
+					<div class="large-9 columns">
+						<input type="text" id="mpt-email" name="email" placeholder="Your email address" />
 					</div>
-					<div class="row">
-						<div class="small-9 small-offset-3 end columns">
-							<button>Submit</button>
-						</div>
+				</div>
+				<div class="row">
+					<div class="large-3 columns">
+						<label for="mpt-comment" class="right inline">What are you thinking?</label>
 					</div>
-				</form>
+					<div class="large-9 columns">
+						<textarea id="mpt-comment" name="message" placeholder="What are you thinking?"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="small-9 small-offset-3 end columns">
+						<button>Submit</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 {% endblock %}

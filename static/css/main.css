@@ -154,7 +154,6 @@ footer {
 	background-color: #c5e4ea;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	margin-top: 40px;
 }
 .partner-logos {
 	list-style-type: none;
@@ -353,9 +352,16 @@ article p {
 
 
 /* SECONDARY PAGES - structure*/
+.page-content {
+	background-color: #f1f9fb;
+	padding-top: 80px;
+	padding-bottom: 80px;
+}
+.page-content:after{
+	clear: both;
+}
 .page-header {
 	background: rgba(171, 199, 55, 1);
-	margin-bottom: 40px;
 }
 .page-header .row{
 	position: relative;
@@ -369,13 +375,20 @@ article p {
 }
 .mpt-content-area figure.full-width {
 	background: #ffffff;
-	margin: 30px -4.9375rem 30px -4.9375rem;
+	margin: 30px -6.17rem 30px -6.17rem;
 	display: block;
+}
+.mpt-content-area figure.left {
+	margin: 0 30px 30px -6.17rem;
+	display: block;
+}
+.mpt-content-area figure.left img, .mpt-content-area figure.left figcaption {
+	padding: 0 30px 0 30px ;
 }
 .mpt-content-area figure.full-width img, .mpt-content-area figure.full-width figcaption {
 	padding: 30px 4.9375rem;
 }
-.mpt-content-area figure.full-width figcaption{
+.mpt-content-area figure.full-width figcaption, .mpt-content-area figure.left figcaption{
 	background: #c5e4ea;
 }
 .mpt-content-area ul {
@@ -424,9 +437,13 @@ ul.mpt-related-orgs {
 .event {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	font-family: 'helvetica neue', arial, sans-serif;
 }
 .event dl {
 	font-size: .93rem;
+}
+.event dd{
+	margin-bottom: 2rem;
 }
 .event-details {
 	margin-bottom: 0;
@@ -439,6 +456,7 @@ ul.mpt-related-orgs {
 	color: #ecf5c6; /* light green */
 	padding-top: 35px;
 	padding-bottom: 35px;
+	text-align: center;
 }
 .event.next  a {
 	color: #ffffff;
@@ -452,7 +470,8 @@ ul.mpt-related-orgs {
 	margin-top: 20px;
 }
 .event .date {
-	margin-bottom: 5px;
+	margin-bottom: 0;
+	text-transform: uppercase;
 }
 .event .title {
 	font-family: 'helvetica neue', arial, sans-serif;
@@ -474,9 +493,21 @@ ul.mpt-related-orgs {
 	font-size: 1.6rem;
 	line-height: 1.6rem;
 }
-ul.more-events {
+.more-events {
+	padding-top: 30px;
+}
+.more-events ul {
 	margin: 0;
 }
+.more-events ul li.event {
+	margin-bottom: 0;
+	padding: 1.25rem 0.625rem ;
+}
+.more-events li:nth-child(odd) {
+    background-color: #e5f4f7;
+}
+
+
 
 
 
