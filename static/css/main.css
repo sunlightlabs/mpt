@@ -352,6 +352,11 @@ article p {
 
 
 /* SECONDARY PAGES - structure*/
+.row.page-content .row {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .page-content {
 	background-color: #f1f9fb;
 	padding-top: 80px;
@@ -369,6 +374,7 @@ article p {
 .page-header h2 {
 	margin: 0 auto;
 	margin-top: 9px;
+	text-align: left;
 }
 .mpt-content-area {
 	min-height: 500px;
@@ -544,8 +550,16 @@ ul.mpt-related-orgs {
 		.community-tweets .medium-8 {
 			background: #3d95ad; /* medium green */
 		}
+		.page-content {
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+		.home .mpt-content-area {
+			margin-top: -20px;
+		}
 		.mpt-content-area {
 			margin-top: 20px;
+			padding:  40px 0 0 0;
 		}
 		.logo {
 			margin-top: -16px;
@@ -554,14 +568,18 @@ ul.mpt-related-orgs {
 			background-position: center top;
 			padding-top: 70px;
 		}
-		.mpt-content-area {
-			padding: 40px 0;
-		}
 		.page-header {
 			margin-top: -85px;
 		}
 		.home .hero {
 			background: url(../img/envelope_money_640.jpg) center bottom no-repeat;
+		}
+		.share a.button {
+			text-indent: -9999em;
+			padding-left: 1.75rem;
+		}
+		.page-header h2 {
+			margin-top: 20px;
 		}
 
 
