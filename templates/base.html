@@ -34,13 +34,13 @@
 
 		<link rel="stylesheet" href="/static/css/foundation.css" />
 		<link rel="stylesheet" href="/static/css/main.css" />
-		<script src="js/vendor/modernizr.js"></script>
+		<script src="/static/js/vendor/modernizr.js"></script>
+		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/djk1gww.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 	</head>
 	<body class="{% block body_class %}{% endblock %}">
-	<div id="fb-root"></div>
+		<div id="fb-root"></div>
 		<script>
 		  window.fbAsyncInit = function() {
 			FB.init({
@@ -138,6 +138,21 @@
 		<script src="/static/js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
+			$(document).ready(function() {
+				$('a.facebook').click(function(ev) {
+					FB.ui(
+						{
+							method: 'feed',
+							name: 'Money, Politics and Transparency',
+							link: 'http://moneypoliticstransparency.org'
+						},
+						function(response) {
+
+						}
+					);
+					ev.preventDefault();
+				});
+			});
 		</script>
 
 		{% if user.is_admin %}
@@ -243,17 +258,6 @@
 							editor = null;
 						}
 						ev.preventDefault();
-					});
-
-					$('a.facebook').click(function(ev) {
-						console.log('FB');
-						ev.preventDefault();
-						FB.ui({
-						   method: 'feed',
-						   name: 'Money, Politics and Transparency',
-						   description: $('meta[property=og:description]').attr('content'),
-						   link: 'http://moneypoliticstransparency.org',
-						});
 					});
 
 				});
