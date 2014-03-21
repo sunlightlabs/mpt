@@ -377,7 +377,6 @@ article p {
 .page-header h2 {
 	margin: 0 auto;
 	margin-top: 9px;
-	text-align: left;
 }
 .mpt-content-area {
 	min-height: 500px;
@@ -583,9 +582,13 @@ ul.mpt-related-orgs {
 		}
 		.page-header h2 {
 			margin-top: 20px;
+			text-align: left;
 		}
-
-
+		.logo, .logo h1{
+			background: url('../img/mpt-logo-small.png')center center no-repeat;
+			width: 250px;
+			height: 79px;
+		}
 
 	} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 
