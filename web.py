@@ -7,6 +7,7 @@ from email.utils import parsedate_tz
 import mistune
 from flask import Flask, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
+from postmark import PMMail
 from whitenoise import WhiteNoise
 
 import feeds
@@ -30,6 +31,15 @@ app.wsgi_app.add_files(os.path.join(PROJECT_ROOT, 'www'))
 #
 
 db = mongo.connect()
+
+
+#
+# Postmark config
+#
+
+POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY')
+POSTMARK_SENDER = os.environ.get('POSTMARK_SENDER')
+POSTMARK_RECIPIENTS = os.environ.get('POSTMARK_RECIPIENTS')
 
 
 #
@@ -184,8 +194,23 @@ def casestudies():
     return render_template('casestudies.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+
+        addr = request.form.get('email')
+        msg = request.form.get('message')
+
+        if msg and addr and '@' in addr:
+            mail = PMMail(api_key=POSTMARK_API_KEY, sender=POSTMARK_SENDER)
+            mail.subject = '[MPT] contact from %s' % addr
+            mail.to = POSTMARK_RECIPIENTS
+            mail.reply_to = addr
+            mail.text_body = msg
+            mail.send()
+
+        return redirect('/thanks')
+
     return render_template('contact.html')
 
 
@@ -207,6 +232,11 @@ def norms():
 @app.route('/resources')
 def resources():
     return render_template('resources.html')
+
+
+@app.route('/thanks')
+def thanks():
+    return render_template('thanks.html')
 
 
 if __name__ == '__main__':

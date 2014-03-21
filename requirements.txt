@@ -10,6 +10,7 @@ itsdangerous==0.23
 mistune==0.2.0
 pycparser==2.10
 pymongo==2.6.3
+python-postmark==0.4.1
 pytz==2014.1
 requests==2.2.1
 waitress==0.8.8
