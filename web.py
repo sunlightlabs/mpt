@@ -4,7 +4,6 @@ import re
 import urlparse
 from email.utils import parsedate_tz
 
-import arrow
 import mistune
 from flask import Flask, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
