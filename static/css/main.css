@@ -321,6 +321,9 @@ footer h3 {
 	background-color: #f1f9fb;
 	padding: 80px 0;
 }
+article {
+	margin-bottom: 40px;
+}
 article header {
 	background: #abc737; /* medium green */
 	border-left: 0.9375rem solid #8fba3e; /* dark green */
