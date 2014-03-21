@@ -24,7 +24,7 @@
 		<!-- open graph tags -->
 		<meta property="og:site_name" content="Money, Politics and Transparency">
 		<meta property="og:locale" content="en_US">
-		<meta property="og:image" content="http://mpt-prod.herokuapp.com/static/icons/facebook.jpg">
+		<meta property="og:image" content="http://moneypoliticstransparency.org/static/icons/facebook.jpg">
 		<meta property="og:type" content="website">
 		{% block og %}
 		<meta property="og:title" content="Money, Politics and Transparency">
@@ -37,8 +37,27 @@
 		<script src="js/vendor/modernizr.js"></script>
 		<script type="text/javascript" src="//use.typekit.net/djk1gww.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 	</head>
 	<body class="{% block body_class %}{% endblock %}">
+	<div id="fb-root"></div>
+		<script>
+		  window.fbAsyncInit = function() {
+			FB.init({
+			  appId      : '762743143745507',
+			  status     : true,
+			  xfbml      : true
+			});
+		  };
+
+		  (function(d, s, id){
+			 var js, fjs = d.getElementsByTagName(s)[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement(s); js.id = id;
+			 js.src = "//connect.facebook.net/en_US/all.js";
+			 fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+		</script>
 		<header>
 			<div class="main-nav contain-to-grid show-for-small">
 				<nav class="top-bar" data-topbar="">
@@ -89,8 +108,8 @@
 					<div class="row">
 						<div class="social-share">
 							<ul class="share">
-								<li class=""><a href="" class="small button twitter">Share</a></li>
-								<li class=""><a href="" class="small button facebook">Like</a></li>
+								<li class=""><a href="https://twitter.com/intent/tweet?related=MPTransparency&amp;url={{ "http://moneypoliticstransparency.org"|urlencode }}&amp;text={{ "Dedicated to improving political finance transparency around the globe"|urlencode }}" class="small button twitter">Share</a></li>
+								<li class=""><a href="#" class="small button facebook">Like</a></li>
 							</ul>
 						</div>
 						<h2 class="small-7 medium-8 medium-centered columns">{% block content_title %}{% endblock %}</h2>
@@ -224,6 +243,17 @@
 							editor = null;
 						}
 						ev.preventDefault();
+					});
+
+					$('a.facebook').click(function(ev) {
+						console.log('FB');
+						ev.preventDefault();
+						FB.ui({
+						   method: 'feed',
+						   name: 'Money, Politics and Transparency',
+						   description: $('meta[property=og:description]').attr('content'),
+						   link: 'http://moneypoliticstransparency.org',
+						});
 					});
 
 				});
