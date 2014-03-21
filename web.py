@@ -1,7 +1,10 @@
+import datetime
 import os
 import re
 import urlparse
+from email.utils import parsedate_tz
 
+import arrow
 import mistune
 from flask import Flask, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
@@ -9,6 +12,7 @@ from whitenoise import WhiteNoise
 
 import feeds
 import mongo
+import twitter
 import users
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -98,6 +102,27 @@ def pretreat(value):
     return value
 
 @app.template_filter()
+def pretweet(tweet):
+    text = tweet['text']
+    urls = tweet.get('entities', {}).get('urls', [])
+    for url in urls:
+        a = '<a href="%s">%s</a>' % (url['url'], url['display_url'])
+        text = text.replace(url['url'], a)
+    return text
+
+@app.template_filter()
+def created_at(tweet, fmt=None):
+    time_tuple = parsedate_tz(tweet['created_at'].strip())
+    dt = datetime.datetime(*time_tuple[:6])
+    dt = dt - datetime.timedelta(seconds=time_tuple[-1])
+    utc_offset = tweet.get('user', {}).get('utc_offset')
+    if utc_offset:
+        dt = dt + datetime.timedelta(minutes=utc_offset / 60)
+    if fmt:
+        return dt.strftime(fmt)
+    return dt
+
+@app.template_filter()
 def markdown(value):
     return mistune.markdown(value)
 
@@ -144,6 +169,8 @@ def save():
 def index():
     context = {
         'posts': feeds.posts(),
+        'mpt_tweets': twitter.mpt_timeline(per_page=1),
+        'tag_tweets': twitter.tag_timeline(per_page=2),
     }
     return render_template('index.html', **context)
 
