@@ -18,7 +18,7 @@ auth = (FOAUTH_EMAIL, FOAUTH_PASSWORD)
 
 def timeline(coll, page=1, per_page=5):
     db = mongo.connect()
-    c = db[coll].find({}).sort('id', 1).limit(per_page)
+    c = db[coll].find({}).sort('id_str', -1).limit(per_page)
 
     skip = (page - 1) * per_page
     if skip:
