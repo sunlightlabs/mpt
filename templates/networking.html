@@ -31,360 +31,150 @@
 					</ul>
 				</div>
 			</div>
-			<div class="row">
-				<h3 class="small-10 small-centered columns">Events</h3>
-				<div class="small-12 small-offset-0 medium-10 medium-offset-1 large-4 large-offset-1 columns end event next">
-					<dl class="event-details">
-						<dt class="date">
-							Date
-						</dt>
-						<dd class="date">
-							April 12, 2014
-						</dd>
-						<dt class="title">
-							Title
-						</dt>
-						<dd class="title">
-							<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-						</dd>
-						<dt class="venue">
-							Venue
-						</dt>
-						<dd class="venue">
-							@Hartford Public Library
-						</dd>
-
-						<dt class="location">
-							Location
-						</dt>
-						<dt class="host">
-							Hosted by
-						</dt>
-						<dd class="host">
-							Connecticut Data Collaborative
-						</dd>
-						<dt class="eventlink">
-							Full event details
-						</dt>
-						<dd class="eventlink">
-							<a href="">Event details</a>
-						</dd>
-					</dl>
-				</div>
-				<div class="large-6 small-12 medium-10 medium-offset-1 large-offset-0 columns end next-other">
-					<div class="large-6 columns event">
-						<dl class="event-details">
-							<dt class="date">
-								Date
-							</dt>
-							<dd class="date">
-								April 12, 2014
-							</dd>
-							<dt class="title">
-								Title
-							</dt>
-							<dd class="title">
-								<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-							</dd>
-							<dt class="venue">
-								Venue
-							</dt>
-							<dd class="venue">
-								@Hartford Public Library
-							</dd>
-
-							<dt class="location">
-								Location
-							</dt>
-							<dt class="host">
-								Hosted by
-							</dt>
-							<dd class="host">
-								Connecticut Data Collaborative
-							</dd>
-							<dt class="eventlink">
-								Full event details
-							</dt>
-							<dd class="eventlink">
-								<a href="">Event details</a>
-							</dd>
-						</dl>
+			{% if upcoming_events %}
+				<div class="row">
+					<h3 class="small-10 small-centered columns">Events</h3>
+					<div class="small-12 small-offset-0 medium-10 medium-offset-1 large-4 large-offset-1 columns end event next">
+						{% with event = upcoming_events[0] %}
+							<dl class="event-details">
+								<dt class="date">Date</dt>
+								<dd class="date">{{ event.start.strftime('%B %-d, %Y') }}</dd>
+								<dt class="title">{{ event.title }}</dt>
+								<dd class="title">
+									{% if event.url %}
+										<a href="{{ event.url }}">{{ event.title }}</a>
+									{% else %}
+										{{ event.title }}
+									{% endif %}
+								</dd>
+								<dt class="location">Location</dt>
+								<dd class="location">{{ event.location }}</dd>
+								{% if event.url %}
+									<dt class="eventlink">Full event details</dt>
+									<dd class="eventlink">
+										<a href="{{ event.url }}">Event details</a>
+									</dd>
+								{% endif %}
+							</dl>
+						{% endwith %}
 					</div>
-					<div class="large-6 columns end event">
-						<dl class="event-details">
-							<dt class="date">
-								Date
-							</dt>
-							<dd class="date">
-								April 12, 2014
-							</dd>
-							<dt class="title">
-								Title
-							</dt>
-							<dd class="title">
-								<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-							</dd>
-							<dt class="venue">
-								Venue
-							</dt>
-							<dd class="venue">
-								@Hartford Public Library
-							</dd>
-
-							<dt class="location">
-								Location
-							</dt>
-							<dt class="host">
-								Hosted by
-							</dt>
-							<dd class="host">
-								Connecticut Data Collaborative
-							</dd>
-							<dt class="eventlink">
-								Full event details
-							</dt>
-							<dd class="eventlink">
-								<a href="">Event details</a>
-							</dd>
-						</dl>
+					{% if upcoming_count > 1 %}
+						<div class="large-6 small-12 medium-10 medium-offset-1 large-offset-0 columns end next-other">
+							<div class="large-6 columns event">
+								{% with event = upcoming_events[1] %}
+									<dl class="event-details">
+										<dt class="date">Date</dt>
+										<dd class="date">{{ event.start.strftime('%B %-d, %Y') }}</dd>
+										<dt class="title">{{ event.title }}</dt>
+										<dd class="title">
+											{% if event.url %}
+												<a href="{{ event.url }}">{{ event.title }}</a>
+											{% else %}
+												{{ event.title }}
+											{% endif %}
+										</dd>
+										<dt class="location">Location</dt>
+										<dd class="location">{{ event.location }}</dd>
+										{% if event.url %}
+											<dt class="eventlink">Full event details</dt>
+											<dd class="eventlink">
+												<a href="{{ event.url }}">Event details</a>
+											</dd>
+										{% endif %}
+									</dl>
+							{% endwith %}
+							</div>
+							{% if upcoming_count > 2 %}
+								<div class="large-6 columns end event">
+									{% with event = upcoming_events[2] %}
+										<dl class="event-details">
+											<dt class="date">Date</dt>
+											<dd class="date">{{ event.start.strftime('%B %-d, %Y') }}</dd>
+											<dt class="title">{{ event.title }}</dt>
+											<dd class="title">
+												{% if event.url %}
+													<a href="{{ event.url }}">{{ event.title }}</a>
+												{% else %}
+													{{ event.title }}
+												{% endif %}
+											</dd>
+											<dt class="location">Location</dt>
+											<dd class="location">{{ event.location }}</dd>
+											{% if event.url %}
+												<dt class="eventlink">Full event details</dt>
+												<dd class="eventlink">
+													<a href="{{ event.url }}">Event details</a>
+												</dd>
+											{% endif %}
+										</dl>
+									{% endwith %}
+								</div>
+							{% endif %}
+						</div>
+					{% endif %}
+				</div>
+				{% if upcoming_count > 3 %}
+					<div class="row more-events">
+						<div class="small-10 small-centered columns">
+							<h4>More events</h4>
+							<ul class="small-12 medium-block-grid-2 large-block-grid-3">
+								{% for event in upcoming_events[3:] %}
+									<li class="event">
+										<dl class="event-details">
+											<dt class="date">
+												Date
+											</dt>
+											<dd class="date">
+												{{ event.start.strftime('%B %-d, %Y') }}
+											</dd>
+											<dt class="title">
+												{{ event.title }}
+											</dt>
+											<dd class="title">
+												{% if event.url %}
+													<a href="{{ event.url }}">{{ event.title }}</a>
+												{% else %}
+													{{ event.title }}
+												{% endif %}
+											</dd>
+											{#
+											<dt class="venue">
+												Venue
+											</dt>
+											<dd class="venue">
+												@Hartford Public Library
+											</dd>
+											#}
+											<dt class="location">
+												Location
+											</dt>
+											<dd class="location">
+												{{ event.location }}
+											</dd>
+											{#
+											<dt class="host">
+												Hosted by
+											</dt>
+											<dd class="host">
+												Connecticut Data Collaborative
+											</dd>
+											#}
+											{% if event.url %}
+												<dt class="eventlink">
+													Full event details
+												</dt>
+												<dd class="eventlink">
+													<a href="{{ event.url }}">Event details</a>
+												</dd>
+											{% endif %}
+										</dl>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row more-events">
-				<div class="small-10 small-centered columns">
-					<h4>More events</h4>
-					<ul class="small-12 medium-block-grid-2 large-block-grid-3">
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="event">
-							<dl class="event-details">
-								<dt class="date">
-									Date
-								</dt>
-								<dd class="date">
-									April 12, 2014
-								</dd>
-								<dt class="title">
-									Title
-								</dt>
-								<dd class="title">
-									<a href="http://ctdata.org/">Connecticut Forum on Open Data</a>
-								</dd>
-								<dt class="venue">
-									Venue
-								</dt>
-								<dd class="venue">
-									@Hartford Public Library
-								</dd>
-
-								<dt class="location">
-									Location
-								</dt>
-								<dt class="host">
-									Hosted by
-								</dt>
-								<dd class="host">
-									Connecticut Data Collaborative
-								</dd>
-								<dt class="eventlink">
-									Full event details
-								</dt>
-								<dd class="eventlink">
-									<a href="">Event details</a>
-								</dd>
-							</dl>
-						</li>
-					</ul>
-				</div>
-			</div>
+				{% endif %}
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
