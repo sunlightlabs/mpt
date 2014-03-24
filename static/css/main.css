@@ -216,6 +216,9 @@ footer h3 {
 .twitter {
 	background: url(../img/twitter.png) left top no-repeat;
 }
+.twitter.color {
+	background: url(../img/twitter-color.png) left top no-repeat;	
+}
 .facebook{
 	background: url(../img/facebook.png) left top no-repeat;
 }
