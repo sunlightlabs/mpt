@@ -6,7 +6,7 @@ import mongo
 
 FEEDS = (
     ('Sunlight Foundation', 'http://sunlightfoundation.com/blog/rss/'),
-    # ('Global Integrity', 'http://www.globalintegrity.org/blog/feed/'),
+    ('Global Integrity', 'http://www.globalintegrity.org/feed/'),
 )
 
 TAGS = set((
