@@ -45,12 +45,20 @@ def refresh():
         db.events.update(spec, {'$set': doc}, upsert=True)
 
 def upcoming_events():
+    today = datetime.datetime.combine(datetime.date.today(), datetime.time(0, 0, 0, 0))
+
     db = mongo.connect()
-    c = db.events.find({}).sort('start', 0)
+    c = db.events.find({'start': {'$gte': today}}).sort('start', 0)
+
     return list(c)
 
 def previous_events():
-    pass
+    today = datetime.datetime.combine(datetime.date.today(), datetime.time(0, 0, 0, 0))
+
+    db = mongo.connect()
+    c = db.events.find({'start': {'$lt': today}}).sort('start', 0)
+
+    return list(c)
 
 
 if __name__ == '__main__':
