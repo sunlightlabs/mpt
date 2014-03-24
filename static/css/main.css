@@ -439,7 +439,8 @@ article p {
 
 /* NETWORKING STYLES */
 .get-involved .twitter {
-	padding-left: 40px;
+	padding-left: 30px;
+	background-size: 27px;
 }
 
 ul.mpt-related-orgs {
@@ -477,6 +478,9 @@ ul.mpt-related-orgs {
 	color: #568c49;
 }
 
+.next-other {
+	background-color: #c5e4ea;
+}
 .next-other .event {
 	background-color: #c5e4ea;
 	margin-top: 20px;
