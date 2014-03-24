@@ -10,6 +10,7 @@ from flask.ext.login import LoginManager, login_user, logout_user, login_require
 from postmark import PMMail
 from whitenoise import WhiteNoise
 
+import events
 import feeds
 import mongo
 import twitter
@@ -221,7 +222,13 @@ def data():
 
 @app.route('/networking')
 def networking():
-    return render_template('networking.html')
+    upcoming = events.upcoming_events()
+    context = {
+        'upcoming_events': upcoming,
+        'upcoming_count': len(upcoming),
+        'previous_events': None,
+    }
+    return render_template('networking.html', **context)
 
 
 @app.route('/norms')
