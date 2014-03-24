@@ -3,7 +3,7 @@ import os
 import requests
 import mongo
 
-TAGS = set(('#GlobalMoneyPolitics', '#politicalmoney', '#MoneyPoliticsTransparency'))
+TAGS = set(('#corruptionstories', '#mptransparency'))
 SCREEN_NAME = 'mptransparency'
 
 FOAUTH_EMAIL = os.environ.get('FOAUTH_EMAIL')
