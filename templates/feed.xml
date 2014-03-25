@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Money, Politics and Transparency</title>
+        <link>http://moneypoliticstransparency.org/</link>
+        <description>Money, Politics and Transparency is dedicated to improving political finance transparency around the globe.</description>
+        <atom:link href="http://moneypoliticstransparency.org/feed" rel="self"></atom:link>
+        <language>en-us</language>
+        <lastBuildDate>{{ now.strftime('%a, %d %b %Y %H:%M:%S') }} -0000</lastBuildDate>
+        {% for post in posts %}
+            <item>
+                <title>{{ post.title }}</title>
+                <link>{{ post.link }}</link>
+                <description>
+                    {{ post.summary|pretreat|striptags|truncate(600) }}
+                </description>
+                <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">{{ post.author }}, {{ post.feed }}</dc:creator>
+                <pubDate>{{ post.published_parsed.strftime('%a, %d %b %Y %H:%M:%S') }}</pubDate>
+                <guid>{{ post.guid }}</guid>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

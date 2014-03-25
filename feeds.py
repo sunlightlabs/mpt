@@ -20,7 +20,7 @@ TAGS = set((
 def posts(page=1, per_page=10):
     skip = (page - 1) * per_page
     db = mongo.connect()
-    c = db.posts.find({}).sort('published', 1).limit(per_page)
+    c = db.posts.find({}).sort('published_parsed', -1).limit(per_page)
     if skip:
         c = c.skip(skip)
     return list(c)

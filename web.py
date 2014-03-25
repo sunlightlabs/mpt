@@ -220,6 +220,16 @@ def data():
     return render_template('data.html')
 
 
+@app.route('/feed')
+def feed():
+    posts = feeds.posts()
+    context = {
+        'posts': posts,
+        'now': datetime.datetime.utcnow(),
+    }
+    return render_template('feed.xml', **context)
+
+
 @app.route('/networking')
 def networking():
     upcoming = events.upcoming_events()
