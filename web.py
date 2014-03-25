@@ -114,10 +114,29 @@ def pretreat(value):
 @app.template_filter()
 def pretweet(tweet):
     text = tweet['text']
-    urls = tweet.get('entities', {}).get('urls', [])
-    for url in urls:
+
+    for url in tweet['entities']['urls']:
         a = '<a href="%s">%s</a>' % (url['url'], url['display_url'])
         text = text.replace(url['url'], a)
+
+    for match in re.finditer(r'\#\w+', text):
+        ht = match.group()
+        a = '<a href="https://twitter.com/search?q=%%23%s&src=hash">%s</a>' % (ht[1:], ht)
+        text = text.replace(ht, a)
+
+    for match in re.finditer(r'\@\w+', text):
+        ut = match.group()
+        a = '<a href="https://twitter.com/%s">%s</a>' % (ut[1:], ut)
+        text = text.replace(ut, a)
+
+    # entities = tweet.get('entities', {})
+    # for etype in ('urls', 'hashtags', 'user_mentions', 'symbols'):
+    #     urls = tweet.get('entities', {}).get('urls', [])
+        # for url in urls:
+        #     a = '<a href="%s">%s</a>' % (url['url'], url['display_url'])
+        #     text = text.replace(url['url'], a)
+        # hashtags = tweet.get('entities', {}).get('hashtags', [])
+
     return text
 
 @app.template_filter()
