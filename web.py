@@ -5,7 +5,7 @@ import urlparse
 from email.utils import parsedate_tz
 
 import mistune
-from flask import Flask, redirect, render_template, request
+from flask import Flask, Response, redirect, render_template, request
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from postmark import PMMail
 from whitenoise import WhiteNoise
@@ -227,7 +227,9 @@ def feed():
         'posts': posts,
         'now': datetime.datetime.utcnow(),
     }
-    return render_template('feed.xml', **context)
+    resp = Response(render_template('feed.xml', **context))
+    resp.headers['Content-Type'] = 'application/rss+xml'
+    return resp
 
 
 @app.route('/networking')
