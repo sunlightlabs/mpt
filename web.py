@@ -98,6 +98,7 @@ def logout():
 # template filters
 #
 
+ASIDE_RE = re.compile(r'<aside(.*?)</aside>', re.S)
 FIGURE_RE = re.compile(r'<figure(.*?)</figure>', re.S)
 HN_RE = re.compile(r'<h[1-6](.*?)</h[1-6]>', re.S)
 OL_RE = re.compile(r'<ol(.*?)</ol>', re.S)
@@ -105,6 +106,7 @@ UL_RE = re.compile(r'<ul(.*?)</ul>', re.S)
 
 @app.template_filter()
 def pretreat(value):
+    value = ASIDE_RE.sub('', value)
     value = FIGURE_RE.sub('', value)
     value = HN_RE.sub('', value)
     value = OL_RE.sub('', value)
