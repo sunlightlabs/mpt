@@ -437,6 +437,9 @@ article p {
 }
 
 /* ABOUT STYLES */
+.mpt-content-area .reference-group {
+	margin-top: 60px;	
+}
 
 .mpt-content-area .reference-group ul {
 	list-style-type: none;
