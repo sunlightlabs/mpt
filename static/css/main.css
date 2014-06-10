@@ -436,13 +436,43 @@ article p {
 	clear: both;
 }
 
+/* ABOUT STYLES */
+
+.mpt-content-area .reference-group ul {
+	list-style-type: none;
+	margin-left: 0;
+	margin-right: 0;
+}
+.mpt-content-area .reference-group li.row {
+	margin-bottom: 50px;
+}
+.reference-group-bios img {
+	border-top: 30px solid rgba(248,228,11,1);
+	margin-top: 4px;
+}
+.mpt-content-area .reference-group-index {
+	border-top: 30px solid rgba(248,228,11,1);
+	padding-top: 30px;
+	margin-bottom: 60px;
+}
+.mpt-content-area .reference-group-index a {
+	display: block;
+}
+.mpt-content-area .reference-group-index h5{
+	background: rgba(255,255,255,.8);
+	margin-top: -14px;
+	position: relative;
+	padding: 20px 5px 10px 5px;
+}
+.mpt-content-area .reference-group-index li:hover {
+	opacity: 0.8;
+}
 
 /* NETWORKING STYLES */
 .get-involved .twitter {
 	padding-left: 30px;
 	background-size: 27px;
 }
-
 ul.mpt-related-orgs {
 	margin: 0 0 0 0;
 	list-style-type: none;
