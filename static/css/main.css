@@ -21,7 +21,6 @@ p{
 a {
 	color: #8fba3e;
 }
-
 a:hover, a:focus {
 	color: #568c49;
 }
@@ -339,7 +338,7 @@ article header {
 article h1 {
 	font-size: 24px;
 	font-weight: 200;
-	margi: 0;
+	margin: 0;
 }
 article header h1, article header a {
 	color: #fff;
@@ -353,8 +352,6 @@ article p {
 	font-family: "kepler-std-extended", georgia, serif;
 	font-weight: 200;
 }
-
-
 
 
 /* SECONDARY PAGES - structure*/
@@ -434,6 +431,106 @@ article p {
 }
 .share li a:after {
 	clear: both;
+}
+
+/* RESOURCES Styles */
+.mpt-resources-content ul {
+	list-style: none;
+	margin-left: 0;
+}
+.mpt-resources-content ul li a {
+	font-family: Helvetica Neue, sans-serif;
+	font-size: 18px;
+	font-weight: 200;
+	color: #2c4f52;
+    border-bottom: 1px dotted #8fba3e; /* dark green */
+    text-decoration: none;
+}
+.mpt-resources-content ul li a:hover {
+	color: #8fba3e;
+}
+.mpt-resources-content ul li span {
+	font-family: Helvetica Neue, sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+}
+#list-space {
+	margin-top: -200px;
+}
+
+.mpt-resources-header {
+	margin-left: -15px;
+}
+.mpt-resources-section-1-container, .mpt-resources-section-2-container, .mpt-resources-section-3-container, .mpt-resources-section-4-container {
+	margin-bottom: 10%;
+}
+.video-elements-1, .video-elements-2, .video-elements-3 {
+	float: left;
+}
+.video-box {
+	display: inline-block;
+	background-color: #0099ae;
+	height: 165px;
+	width: 213px;
+	padding-left: 15px;
+	padding-top: 25px;
+	margin-bottom: 50px;
+/*	float: left; */
+}
+.video-title {
+	font-family: Helvetica Neue, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 18px;
+	color: white;
+}
+.date {
+	font-size: 11px;
+	font-family: Georgia;
+	color: white;
+}
+.mpt-resources-section-2-container .video-box .link-box {
+	width: 213px;
+	height: 25px;
+	background-color: #217683;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	margin-left: -15px;
+}
+.video-link {
+	font-family: Helvetica Neue, sans-serif;
+	color: #8fba3e;
+	font-size: 11px;
+	font-weight: 500;
+	text-decoration: none;
+}
+.mpt-resources-container .video-box .link-box a {
+	text-decoration: none;
+	color: #8fba3e;
+
+}
+img {
+	display: inline-block;
+	float: left;
+} 
+
+.mpt-resources-section-3-container, .mpt-resources-section-4-container {
+	padding-left: 9.6% !important;
+	margin-right: 9.6% !important;
+}
+.cols-2 {
+	-webkit-column-count: 2;
+	-moz-column-count: 2; 
+}
+.cols-2 .mpt-resources-content-column {
+	display: inline-table;
+}
+
+.cols-2 h4 {
+	display: block;
+	-webkit-column-span: all;
+	-moz-column-span: all;
 }
 
 /* ABOUT STYLES */
