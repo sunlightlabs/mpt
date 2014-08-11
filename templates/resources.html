@@ -5,12 +5,8 @@
 {% block content %}
 	<div class="row page-content clearfix">
 		<div class="mpt-resources-content">
-			<!--
-			<div class="editable" data-key="intro">
-				{{ content.intro|safe }}
-			</div>
-			-->
 
+		{% if true %}
 			<div class="small-12 columns">
 				<div class="row">
 					<section class="mpt-resources-header clearfix">
@@ -276,6 +272,12 @@
 					</li>
 				</ul>
 			</div>
+
+			{% else %}
+				<div class="editable" data-key="intro">
+					{{ content.intro|safe }}
+				</div>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
