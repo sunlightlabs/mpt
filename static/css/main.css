@@ -318,6 +318,7 @@ footer h3 {
 }
 
 
+
 /* HOME - blog posts */
 .blog {
 	background-color: #f1f9fb;
@@ -439,6 +440,8 @@ article p, section p {
 .share li a:after {
 	clear: both;
 }
+
+
 
 /* RESOURCES Styles */
 .mpt-resources-section-2-container {
@@ -610,14 +613,9 @@ article p, section p {
 .mpt-content-area .mpt-resources-content .cols-2 li {
 	display: inline-block;
 }
-/*
- .header-divider {
-	border-top: 30px solid rgba(248,228,11,1);
-	border-top-width: 30px;
-	border-top-style: solid;
-	border-top-color: rgb(248, 228, 11);
-	padding-top: 30px;
-} */
+
+
+
 /* ABOUT STYLES */
 .mpt-content-area .reference-group {
 	margin-top: 60px;	
@@ -652,6 +650,8 @@ article p, section p {
 .mpt-content-area .reference-group-index li:hover {
 	opacity: 0.8;
 }
+
+
 
 /* NETWORKING STYLES */
 .get-involved .twitter {
