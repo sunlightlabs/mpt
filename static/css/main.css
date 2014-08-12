@@ -352,6 +352,13 @@ article p, section p {
 	font-family: "kepler-std-extended", georgia, serif;
 	font-weight: 200;
 }
+.mpt-content-area .mpt-resources-content section header p a{
+	color: #2c4f52; /* text blue */
+}
+.mpt-resources-content article header p a:hover, .mpt-resources-content section header p a:hover {
+	color: #fff;
+}
+
 
 
 /* SECONDARY PAGES - structure*/
@@ -434,6 +441,9 @@ article p, section p {
 }
 
 /* RESOURCES Styles */
+.mpt-resources-section-2-container {
+	margin-bottom: 80px;
+}
 .mpt-resources-section-3-container, .mpt-resources-section-4-container {
 	padding-left: 9.75% !important;
 	margin-right: 9.75% !important;
@@ -453,6 +463,15 @@ article p, section p {
 	margin-bottom: 10px;
     padding-left: 0;
 }
+.mpt-content-area .mpt-resources-content ul li p a {
+	font-family: inherit;
+	font-size: inherit;
+	color: #8fba3e; /* dark green */
+	border-bottom: none;
+}
+.mpt-content-area .mpt-resources-content ul li p a:hover {
+	color: #abc737; /* light green */
+}
 .mpt-content-area .mpt-resources-content ul li a{
 	font-family: Helvetica Neue, sans-serif;
 	font-size: 18px;
@@ -467,6 +486,15 @@ article p, section p {
 }
 .mpt-resources-content ul li p {
 	font-size: 1rem;
+}
+.mpt-content-area .mpt-resources-content .country-name a {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	border-bottom: none;
+}
+.country-name a:hover {
+	color: #8fba3e; /* dark green */
 }
 .mpt-resources-content .cols-2 li p, .mpt-resources-content .cols-3 li p {
 	line-height: 1.47;
