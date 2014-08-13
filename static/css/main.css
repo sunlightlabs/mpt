@@ -490,13 +490,13 @@ article p, section p {
 .mpt-resources-content ul li p {
 	font-size: 1rem;
 }
-.mpt-content-area .mpt-resources-content .country-name a {
+.mpt-content-area .mpt-resources-content .sub-header a {
 	font-family: inherit;
 	font-size: inherit;
 	font-weight: inherit;
 	border-bottom: none;
 }
-.country-name a:hover {
+.sub-header a:hover {
 	color: #8fba3e; /* dark green */
 }
 .mpt-resources-content .cols-2 li p, .mpt-resources-content .cols-3 li p {
@@ -509,7 +509,7 @@ article p, section p {
 	float: left; 
 	clear: both;
 }
-.mpt-resources-content ul li .country-name {
+.mpt-resources-content ul li .sub-header {
 	display: inline-block;
 	font-family: Helvetica Neue, sans-serif;
 	font-weight: 300;
@@ -532,6 +532,7 @@ article p, section p {
 	width: 60%;
 	padding: 25px 15px 0 15px;
 	margin-bottom: 50px;
+	float:left;
 }
 .video-title {
 	font-family: Helvetica Neue, sans-serif;
@@ -826,7 +827,13 @@ ul.mpt-related-orgs {
 		.cols-3, .cols-2 {
 		-webkit-column-count: 1;
 		-moz-column-count: 1;
-}
+		}
+		#video-1 {
+		display: block;
+		-moz-box-sizing: border-box;
+  		box-sizing: border-box;
+		background: url('http://127.0.0.1:8000/static/img/video-img-1_medium.jpg')
+		}	
 
 	} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
 
@@ -852,6 +859,9 @@ ul.mpt-related-orgs {
 		}
 		.video-box {
 		width: 90%;
+		}
+		#video-1 {
+		background-image: url('http://127.0.0.1:8000/static/img/video-img-1_medium.jpg')
 		}	
 	} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
 
