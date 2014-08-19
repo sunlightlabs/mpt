@@ -586,6 +586,7 @@ article p, section p {
 }
 .mpt-resources-content .cols-2.mpt-resources-column {
 	padding-bottom: 30px;
+	-webkit-margin-bottom-collapse: separate;
 }
 .cols-2 {
 	-webkit-column-count: 2;
@@ -596,8 +597,9 @@ article p, section p {
 .cols-2 li, .cols-3 li {
 	-webkit-column-break-inside: avoid;
 	column-break-inside: avoid;
-	-moz-column-break-inside: avoid;
-}
+	-moz-column-break-inside: avoid; 
+} 
+
 .cols-3 {
 	-webkit-column-count: 3;
 	-moz-column-count: 3;
@@ -609,7 +611,7 @@ article p, section p {
 }
 .mpt-content-area .mpt-resources-content .cols-3 li{
 	display: inline-block;
-	margin-bottom: 30px;
+	margin-bottom: 30px; 
 }
 .mpt-content-area .mpt-resources-content .cols-2 li {
 	display: inline-block;
