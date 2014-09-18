@@ -533,15 +533,12 @@ article p, section p {
 .mpt-resources-section-2-container li {
 	float: left;
 }
-#video-elements-3 {
-	margin-top: -60px;
-}
+
 .video-box {
 	display: inline-block;
 	background-color: #0099ae;
 	width: 60%;
 	padding: 25px 15px 0 15px;
-	margin-bottom: 50px;
 	float:left;
 }
 .video-title {
@@ -561,6 +558,7 @@ article p, section p {
 	padding: 1px 0 3px 15px;
 	margin-right: -15px;
 	margin-left: -15px;
+	display: block;
 }
 .video-box a {
 	text-decoration: none;
@@ -865,9 +863,7 @@ ul.mpt-related-orgs {
 		.home .hero {
 			background: url(../img/envelope_money_1024.jpg) center bottom no-repeat;
 		}
-		#video-elements-3 {
-		margin-top: -35px;
-		}
+
 		.mpt-resources-section-2-container li a img {
 		width: 90%;
 		}
