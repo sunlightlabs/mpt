@@ -454,9 +454,19 @@ article p, section p {
 .mpt-resources-section-3-container {
 	margin-bottom: 80px;
 }
+.mpt-resources-section-3-container .region {
+	margin-bottom: 40px;
+}
 
 .mpt-resources-section-4-container {
 	margin-bottom: 0; 
+}
+.mpt-resources-content section{
+	margin-top: 40px;
+	margin-bottom: 0;
+}
+.mpt-resources-content section header {
+	margin-bottom: 40px;
 }
 .mpt-content-area .mpt-resources-content ul {
 	margin: 0;
@@ -587,6 +597,8 @@ article p, section p {
 .mpt-resources-content .cols-2.mpt-resources-column {
 	padding-bottom: 30px;
 	-webkit-margin-bottom-collapse: separate;
+}
+.mpt-col-left, .mpt-col-right {
 }
 .cols-2 {
 	-webkit-column-count: 2;
