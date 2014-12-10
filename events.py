@@ -48,7 +48,7 @@ def upcoming_events():
     today = datetime.datetime.combine(datetime.date.today(), datetime.time(0, 0, 0, 0))
 
     db = mongo.connect()
-    c = db.events.find({'start': {'$gte': today}}).sort('start', 0)
+    c = db.events.find({'start': {'$gte': today}}).sort('start')
 
     return list(c)
 
