@@ -41,6 +41,7 @@ db = mongo.connect()
 POSTMARK_API_KEY = os.environ.get('POSTMARK_API_KEY')
 POSTMARK_SENDER = os.environ.get('POSTMARK_SENDER')
 POSTMARK_RECIPIENTS = os.environ.get('POSTMARK_RECIPIENTS')
+GENERIC_RECIPIENT = os.environ.get('GENERIC_RECIPIENT')
 
 
 #
@@ -219,6 +220,14 @@ def casestudies():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
+        # different dropdowns -> mail for different people
+        mail_to = {
+            "data": os.environ.get('DATA_RECIPIENT', GENERIC_RECIPIENT),
+            "casestudies": os.environ.get('CASESTUDIES_RECIPIENT', GENERIC_RECIPIENT),
+            "declaration": os.environ.get('DECLARATION_RECIPIENT', GENERIC_RECIPIENT),
+            "resources": os.environ.get('RESOURCES_RECIPIENT', GENERIC_RECIPIENT),
+            "other": os.environ.get('OTHER_RECIPIENT', GENERIC_RECIPIENT)
+        }[request.form.get('issue').lower()]
 
         addr = request.form.get('email')
         msg = request.form.get('message')
@@ -226,7 +235,7 @@ def contact():
         if msg and addr and '@' in addr:
             mail = PMMail(api_key=POSTMARK_API_KEY, sender=POSTMARK_SENDER)
             mail.subject = '[MPT] contact from %s' % addr
-            mail.to = POSTMARK_RECIPIENTS
+            mail.to = mail_to
             mail.reply_to = addr
             mail.text_body = msg
             mail.send()
