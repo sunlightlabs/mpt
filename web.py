@@ -273,7 +273,7 @@ def networking():
     return render_template('networking.html', **context)
 
 
-@app.route('/norms')
+@app.route('/declaration')
 def norms():
     return render_template('norms.html')
 
